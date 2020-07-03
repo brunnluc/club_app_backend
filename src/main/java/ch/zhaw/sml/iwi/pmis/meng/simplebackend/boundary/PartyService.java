@@ -5,13 +5,17 @@ import ch.zhaw.sml.iwi.pmis.meng.simplebackend.repository.PartyServiceRepository
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Transactional
@@ -35,13 +39,18 @@ public class PartyService {
         }
         return partyList;
     }
-    
-    
-    @GetMapping(path = "/partys/{id}")
-    public Party getParty(@RequestParam("id") Long id) {        
-        //return partyServiceRepository.findById(id).get();
-        return partyServiceRepository.findById(id).get();
+
+    @RequestMapping(path = "partys/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Party> getParty(@PathVariable Long id){
+        Optional<Party> party = partyServiceRepository.findById(id);
+
+        if(party.isPresent()){
+            return new ResponseEntity<Party>(party.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
+
     /*
 
     @RequestMapping(path = "/partys", method=RequestMethod.GET)
