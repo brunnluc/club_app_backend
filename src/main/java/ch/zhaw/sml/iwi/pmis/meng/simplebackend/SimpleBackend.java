@@ -1,7 +1,13 @@
 package ch.zhaw.sml.iwi.pmis.meng.simplebackend;
 
+import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Club;
+import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Dj;
+import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Music;
+import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Organizer;
 import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Party;
 import ch.zhaw.sml.iwi.pmis.meng.simplebackend.repository.PartyServiceRepository;
+
+// import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,31 +23,38 @@ public class SimpleBackend {
     }
   
     @Autowired
-    private PartyServiceRepository partyServiceRepository ;
+    private PartyServiceRepository partyServiceRepository;
 
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             Party p = new Party();
-            p.
-            p.setQuantity(new QuantityTons(25));
-            Attribute a = new Attribute();
-            a.setName("BottleMaterial");
-            a.setValue("pp");
-            p.getAttributes().add(a);
+            // p.setDate();
+            p.setTitel("Smooth & Sexy");
+            p.setImageUrl("https://diginights.com/uploads/images/event/2017/07/15/2017-07-15-smooth-n-sexy-at-hiltl-club-sa-15-juli-2017-hiltl-club/headline_image-default-1.jpg");
+            p.setDescription("Hip Hop, Club Music, R&B");
+            p.setPrice(30.00);
 
-            a = new Attribute();
-            a.setName("BottleColor");
-            a.setValue("red");
-            p.getAttributes().add(a);
-            inventoryRepository.save(p);
+            Club c = new Club();
+            c.setName("Badenerstrasse 22");
+            c.setLongitude(1.0384);
+            c.setLatitude(8.9585);
+            p.setClub(c);
             
-            p = new Part();
-            p.setName("Fanta");
-            p.setQuantity(new QuantityTons(50));
-            inventoryRepository.save(p);
+            Dj d = new Dj();
+            d.setName("DJ Lucas Brrrrruunnner");
+            p.setDj(d);
+
+            Music m = new Music();
+            m.setName("R&B, Latino");
+            p.setMusic(m);
+
+            Organizer o = new Organizer();
+            o.setFirstName("Salahudini");
+            o.setLastName("Zumberi");
+            p.setOrganizer(o); 
             
-            
+            partyServiceRepository.save(p);
         };
     }
     

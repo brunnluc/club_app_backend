@@ -1,44 +1,39 @@
 package ch.zhaw.sml.iwi.pmis.meng.simplebackend.boundary;
 
-import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Part;
-import ch.zhaw.sml.iwi.pmis.meng.simplebackend.repository.InventoryRepository;
+import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Party;
+import ch.zhaw.sml.iwi.pmis.meng.simplebackend.repository.PartyServiceRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Transactional
 @RestController
-public class InventoryService {
+public class PartyService {
 
     @Autowired
-    private InventoryRepository inventoryRepository;
+    private PartyServiceRepository partyServiceRepository;
     
+    @GetMapping(path = "/partys")
+    public List<Party> getAll() {
+        List<Party> partyList = new ArrayList<>();
+        for(Party p : partyServiceRepository.findAll()) {
+            Hibernate.initialize(p.getClub());
+            Hibernate.initialize(p.getDj());
+            Hibernate.initialize(p.getMusic());
+            Hibernate.initialize(p.getOrganizer());
 
-    @GetMapping(path = "/hallo")
-    public String getHello() {
-        
-        return "Hallo";
-    }
-
-    @GetMapping(path = "/inventory")
-    public List<Part> getAllParts() {
-        List<Part> resList = new ArrayList<>();
-        for(Part p : inventoryRepository.findAll()) {
-            Hibernate.initialize(p.getAttributes());
             // p.getAttributes().size();
-            resList.add(p);
+            partyList.add(p);
         }
-        return resList;
+        return partyList;
     }
     
+    /*
     @GetMapping(path = "/inventory/{id}")
     public Part getEntry(@RequestParam("id") Long id) {        
         return inventoryRepository.findById(id).get();
@@ -65,4 +60,5 @@ public class InventoryService {
         }
         return resList;
     }
+    */
 }

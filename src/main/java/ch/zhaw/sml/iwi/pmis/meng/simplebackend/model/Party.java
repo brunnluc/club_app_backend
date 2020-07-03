@@ -35,7 +35,7 @@ public class Party {
 
     @Cascade(CascadeType.ALL)
     @ManyToOne
-    private Djs djs;
+    private Dj dj;
 
     @Cascade(CascadeType.ALL)
     @ManyToOne
@@ -91,6 +91,38 @@ public class Party {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    public Dj getDj() {
+        return dj;
+    }
+
+    public void setDj(Dj dj) {
+        this.dj = dj;
+    }
+
+    public Music getMusic() {
+        return music;
+    }
+
+    public void setMusic(Music music) {
+        this.music = music;
+    }
+
+    public Organizer getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(Organizer organizer) {
+        this.organizer = organizer;
     }
   
 }
