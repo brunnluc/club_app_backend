@@ -7,6 +7,8 @@ import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Organizer;
 import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Party;
 import ch.zhaw.sml.iwi.pmis.meng.simplebackend.repository.PartyServiceRepository;
 
+import java.util.Date;
+
 // import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class SimpleBackend {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             Party p = new Party();
-            // p.setDate();
+            p.setDate(new Date());
             p.setTitel("Smooth & Sexy");
             p.setImageUrl("https://diginights.com/uploads/images/event/2017/07/15/2017-07-15-smooth-n-sexy-at-hiltl-club-sa-15-juli-2017-hiltl-club/headline_image-default-1.jpg");
             p.setDescription("Hip Hop, Club Music, R&B");
@@ -55,6 +57,34 @@ public class SimpleBackend {
             p.setOrganizer(o); 
             
             partyServiceRepository.save(p);
+
+            Party p1 = new Party();
+            p1.setDate(new Date());
+            p1.setTitel("Smooth & Sexy");
+            p1.setImageUrl("https://diginights.com/uploads/images/event/2017/07/15/2017-07-15-smooth-n-sexy-at-hiltl-club-sa-15-juli-2017-hiltl-club/headline_image-default-1.jpg");
+            p1.setDescription("Hip Hop, Club Music, R&B");
+            p1.setPrice(30.00);
+
+            Club c1 = new Club();
+            c1.setName("Badenerstrasse 22");
+            c1.setLongitude(1.0384);
+            c1.setLatitude(8.9585);
+            p1.setClub(c1);
+            
+            Dj d1 = new Dj();
+            d1.setName("DJ Lucas Brrrrruunnner");
+            p1.setDj(d1);
+
+            Music m1 = new Music();
+            m1.setName("R&B, Latino");
+            p1.setMusic(m1);
+
+            Organizer o1 = new Organizer();
+            o1.setFirstName("Salahudini");
+            o1.setLastName("Zumberi");
+            p1.setOrganizer(o1); 
+            
+            partyServiceRepository.save(p1);
         };
     }
     
