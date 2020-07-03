@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SimpleBackend<MEng-SimpleBackend>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "ch.zhaw.sml.iwi.pmis.meng.simplebackend.SimpleBackend",
+            "projectName": "MEng-SimpleBackend",
+            "args": ""
+        }
+    ]
+}

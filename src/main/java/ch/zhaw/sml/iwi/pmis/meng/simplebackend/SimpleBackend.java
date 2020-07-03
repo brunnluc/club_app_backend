@@ -1,9 +1,8 @@
 package ch.zhaw.sml.iwi.pmis.meng.simplebackend;
 
-import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Attribute;
-import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Part;
-import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.QuantityTons;
-import ch.zhaw.sml.iwi.pmis.meng.simplebackend.repository.InventoryRepository;
+import ch.zhaw.sml.iwi.pmis.meng.simplebackend.model.Party;
+import ch.zhaw.sml.iwi.pmis.meng.simplebackend.repository.PartyServiceRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,13 +17,13 @@ public class SimpleBackend {
     }
   
     @Autowired
-    private InventoryRepository inventoryRepository;
+    private PartyServiceRepository partyServiceRepository ;
 
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-            Part p = new Part();
-            p.setName("Cola");
+            Party p = new Party();
+            p.
             p.setQuantity(new QuantityTons(25));
             Attribute a = new Attribute();
             a.setName("BottleMaterial");
