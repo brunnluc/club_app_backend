@@ -13,17 +13,13 @@ public class Club {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+	private Long id;
     private String name;
     private double longitude;
 	private double latitude;
 
 	public Long getId() {
 		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public String getName() {
 		return name;

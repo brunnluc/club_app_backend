@@ -15,5 +15,4 @@ public interface PartyServiceRepository extends CrudRepository<Party, Long>{
     public List<Party> findAll();
     Optional<Party> findById(Long id);
    // public Party findbyId(Long id);
-
 }

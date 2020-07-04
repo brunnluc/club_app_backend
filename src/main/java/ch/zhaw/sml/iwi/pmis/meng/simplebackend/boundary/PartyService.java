@@ -12,6 +12,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public class PartyService {
     @Autowired
     private PartyServiceRepository partyServiceRepository;
     
+    @CrossOrigin
     @GetMapping(path = "/partys")
     public List<Party> getAll() {
         List<Party> partyList = new ArrayList<>();
@@ -40,6 +42,7 @@ public class PartyService {
         return partyList;
     }
 
+    @CrossOrigin
     @RequestMapping(path = "partys/{id}", method = RequestMethod.GET)
     public ResponseEntity<Party> getParty(@PathVariable Long id){
         Optional<Party> party = partyServiceRepository.findById(id);

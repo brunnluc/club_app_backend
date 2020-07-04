@@ -20,11 +20,9 @@ public class Party {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
     @Temporal(TemporalType.DATE)
     private Date date;
-
-    private String titel;
+    private String title;
     private String imageUrl;
     private String description;
     private double price;
@@ -49,10 +47,6 @@ public class Party {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -62,11 +56,11 @@ public class Party {
     }
 
     public String getTitel() {
-        return titel;
+        return title;
     }
 
     public void setTitel(String titel) {
-        this.titel = titel;
+        this.title = titel;
     }
 
     public String getImageUrl() {
